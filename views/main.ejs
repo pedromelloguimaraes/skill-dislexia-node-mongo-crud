@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Página Inicial | Portal DyslexiAssist</title>
+    <style>
+      .hidden-input {
+        display: none;
+      }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+      function atualizarOpcoes() {
+        var segmento = document.getElementById("segmento")
+        var serie = document.getElementById("serie")
+
+        // Limpar as opções anteriores
+        serie.innerHTML = ""
+
+        // Obter o valor selecionado no primeiro menu
+        var segmentoSelecionado = segmento.value
+
+        // Adicionar as opções correspondentes no segundo menu
+        if (segmentoSelecionado === "em") {
+            adicionarOpcao(serie, "1º Ano", 1)
+            adicionarOpcao(serie, "2º Ano", 2)
+            adicionarOpcao(serie, "3º Ano", 3)
+        } else if (segmentoSelecionado === "f1") {
+            adicionarOpcao(serie, "1º Ano", 1)
+            adicionarOpcao(serie, "2º Ano", 2)
+            adicionarOpcao(serie, "3º Ano", 3)
+            adicionarOpcao(serie, "4º Ano", 4)
+            adicionarOpcao(serie, "5º Ano", 5)
+        } else if (segmentoSelecionado === "f2") {
+            adicionarOpcao(serie, "6º Ano", 6)
+            adicionarOpcao(serie, "7º Ano", 7)
+            adicionarOpcao(serie, "8º Ano", 8)
+            adicionarOpcao(serie, "9º Ano", 9)
+        }
+      }
+
+      function adicionarOpcao(selectElement, optionText, optionValue) {
+        var option = document.createElement("option")
+        option.text = optionText
+        option.value = optionValue
+        selectElement.add(option)
+      }
+
+      function toggleTextarea(text, check) {
+        // Obtenha o elemento do textarea
+        const textareaElement = document.getElementById(text)
+
+        // Obtenha o estado do checkbox
+        const checkbox = document.getElementById(check)
+        const isChecked = checkbox.checked
+
+        // Altere a visibilidade do textarea com base no estado do checkbox
+        textareaElement.style.display = isChecked ? 'block' : 'none'
+      }
+
+//    let letterIndex = []; // Índice para controlar a letra a ser exibida
+    
+    function removeInputField(questao){
+      const container = document.getElementById(`comandosDiv_${questao}`)
+      let ncomandos = document.getElementById(`ncomandos_${questao}`).value
+      
+      const input = document.getElementById(`comando_${questao}_${ncomandos}`)
+      const breakLine = document.getElementById(`break_${questao}_${ncomandos}`)
+      const labelElement = document.getElementById(`labelelement_${questao}_${ncomandos}`)
+
+      container.removeChild(breakLine)
+      container.removeChild(input)
+      container.removeChild(labelElement)
+
+      document.getElementById(`ncomandos_${questao}`).value--
+
+      if(document.getElementById(`ncomandos_${questao}`).value == 1){
+        document.getElementById(`labelelement_${questao}_1`).textContent = ""
+      }
+
+    }
+    
+    function addInputField(questao){
+      const alphabet = 'abcdefghijklmnopqrstuvwxyz'
+      let ncomandos = document.getElementById(`ncomandos_${questao}`); 
+      const index = parseInt(ncomandos.value)
+      let label = alphabet.charAt(index) + ')' // Cria o rótulo com a letra do alfabeto
+
+      if(index == 0){
+        label = ""
+      } else if(index == 1){
+        document.getElementById(`labelelement_${questao}_1`).textContent = 'a)'
+      }
+
+      // Obtém a div onde os campos serão adicionados
+      const container = document.getElementById(`comandosDiv_${questao}`)
+      
+      // Cria o elemento de input
+      const inputField = document.createElement('input');
+      inputField.setAttribute("name", `comando_${questao}_${index+1}`)
+      inputField.setAttribute("id", `comando_${questao}_${index+1}`)
+      inputField.setAttribute("class", "comando")
+      inputField.type = 'text'
+
+      // Cria o rótulo e atribui o texto (a), (b), (c), (d)...
+      const labelElement = document.createElement('label')
+      labelElement.textContent = label
+      labelElement.setAttribute("id", `labelelement_${questao}_${index+1}`)
+
+      // Cria uma quebra de linha para separar os campos
+      const lineBreak = document.createElement('br')
+      lineBreak.setAttribute("id", `break_${questao}_${index+1}`)
+
+      if(index >= 26){
+        alert('Você atingiu o limite de comandos!')
+      }
+      // Adiciona o rótulo, o input e a quebra de linha na div
+      if(index < 26){
+        container.appendChild(labelElement)
+        container.appendChild(inputField)
+        container.appendChild(lineBreak)
+        ncomandos.value = `${index+1}` // Incrementa o índice para a próxima letra
+      }
+      
+      
+    }
+
+    function addQuestao() {
+      let questoes = document.getElementById("questoes")
+      let nquestoes = document.getElementById("nquestoes")
+      let n = parseInt(nquestoes.value)+1
+
+      let breakl = "<br>"
+      if(n == 1){
+        breakl = ""
+      }
+
+      let htmlQuestao = `
+      <div id="questao_${n}">
+        ${breakl}
+        <p><i>Questão ${n}</i>
+          <input type="hidden" name="ncomandos_${n}" id="ncomandos_${n}" value="0">
+          <p>Texto prévio:
+            <input type="checkbox" class="check" name="showTextoPrevio${n}" id="showTextoPrevio${n}" onchange="toggleTextarea('textoPrevioInput${n}', 'showTextoPrevio${n}')"/>
+            <textarea id="textoPrevioInput${n}" name="textoPrevioInput${n}" class="hidden-input" rows="4" cols="50" placeholder="Digite aqui o texto prévio"></textarea>
+          </p>
+          <p>Comando inicial:
+            <input type="checkbox" class="check" name="showComandoInicial${n}" id="showComandoInicial${n}" onchange="toggleTextarea('comandoInicialInput${n}', 'showComandoInicial${n}')"/>
+            <input type="text" id="comandoInicialInput${n}" name="comandoInicialInput${n}" class="hidden-input" rows="4" cols="50" placeholder="Digite aqui o comando inicial"></textarea>
+          </p>
+          <p>Comandos
+            <button type="button" class="maismenos" onclick="addInputField(${n})"><b>+</b></button>
+            <button type="button" class="maismenos" onclick="removeInputField(${n})"><b>-</b></button>
+            <div id="comandosDiv_${n}"></div>
+        </p>
+        </div>
+`
+      questoes.innerHTML += htmlQuestao
+      nquestoes.value = `${n}`
+    }
+    
+    function removeQuestao(){
+      let nquestoes = document.getElementById("nquestoes").value
+      let questao = document.getElementById(`questao_${nquestoes}`)
+
+      questao.remove()
+      document.getElementById("nquestoes").value--
+    }
+    </script>
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+    <link rel='stylesheet' href='../stylesheets/stylesheet.css' />  
+  </head>
+  <body>
+    <div class="content">
+
+    <div class="navbar">
+      <!-- Logo no canto esquerdo -->
+      <div class="navbar-logo">
+        <img src="../images/favicon.png" alt="Logo">
+      </div>
+  
+      <!-- Texto centralizado -->
+      <div class="navbar-title">
+        Portal DyslexiAssist
+      </div>
+
+      <div class="navbar-actions">
+        <a href="./pages/quemsomos.html">Quem Somos</a>
+      </div>
+    </div>
+  <div class="box">
+    <div class="cadastro">
+    <h2>Cadastro</h2>
+    <form name="cadastro" action="save" method="POST">
+      <p>
+        <label><b>Escola:</b></label>
+        <select id="escola" name="escola">
+          <option value="">Selecione...</option>
+          <option value="centro educacional leonardo da vinci">Centro Educacional Leonardo da Vinci</option>
+        </select>
+      </p>
+      <p>
+        <label><b>Matéria:</b></label>
+        <input type="text" name="materia"/>
+      </p>
+      <p><label for="segmento"><b>Segmento/Série:</b></label>
+        <select id="segmento" name="segmento" onchange="atualizarOpcoes()">
+            <option value="">Selecione...</option>
+            <option value="em">Ensino Médio</option>
+            <option value="f1">Fundamental I</option>
+            <option value="f2">Fundamental II</option>
+        </select>
+
+        <select id="serie" name="serie"></select>
+      </p>
+      <div class="md-form md-outline input-with-post-icon datepicker">
+        <p><b>Data e hora de início da aplicação:</b></p>
+        <input placeholder="Selecionar data" type="date" id="datainicio" name="datainicio" class="form-control">
+        <p><input type="time" id="inicioaplicacao" name="inicioaplicacao"></p>
+      </div>
+      <div class="md-form md-outline input-with-post-icon datepicker">
+        <p><b>Data e hora finais da aplicação:</b></p>
+        <input placeholder="Selecionar data" type="date" id="datafinal" name="datafinal" class="form-control">
+        <p><input type="time" id="finalaplicacao" name="finalaplicacao"></p>
+      </div>
+      <p><b>Questões</b>
+        <input type="hidden" name="nquestoes" id="nquestoes" value="0">
+        <button type="button" class="maismenos" onclick="addQuestao()">+</button>
+        <button type="button" class="maismenos" onclick="removeQuestao()"><b>-</b></button>
+        <div id="questoes"></div>
+      </p>
+      <p>
+        <input class="submit" type="submit" value="Salvar"/>
+      </p>
+    </form>
+    </div>
+    <div class="listagem">
+      <h2>Listagem</h2>
+      <ul>
+        <% for (let i = 0; i < result.length; i++) { %>
+          <input name="resultid" id="resultid<%= i %>" type="hidden" value="<%= result[i]._id %>">
+          <li>
+            <form name="lista" action="delete" method="POST">
+              <input name="iddel" id="resultid<%= i %>" type="hidden" value="<%= result[i]._id %>">
+              (<%= result[i].escola.toUpperCase() %>) <%= result[i].materia %> - <% if (result[i].serie && result[i].serie[1]) { %><%= result[i].serie[1] %>º ano<% } else { %><%= result[i].serie %>º ano<% } %>
+              <button class="noselect" type="submit" onclick="return confirm('Tem certeza que deseja deletar a prova do banco de dados? (É para sempre!)')"><span class="text">Deletar</span><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path></svg></span></button>
+            </form>
+          </li>
+        <% } %>
+      </ul>
+      </div>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>

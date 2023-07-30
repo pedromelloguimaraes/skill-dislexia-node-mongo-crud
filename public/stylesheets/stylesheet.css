@@ -1,0 +1,243 @@
+body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color:white;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(31,31,235,1) 0%, rgba(0,212,255,1) 100%);
+
+  }
+
+  .listagem{
+    color: white
+  }
+
+  input:not(.check, .submit, .edicaobotao){
+    width: 500px;
+    height: 50px;
+    border: 0;
+    border-radius: 10px;
+    font-size: medium;
+    margin-top: 10px;
+    margin-left: 10px;
+    color:black
+  }
+
+  textarea{
+    font-family: Arial, Helvetica, sans-serif;
+    border: 0;
+    border-radius: 10px;
+    font-size: medium;
+    margin-top: 10px;
+    margin-left: 10px;
+    color:black
+  }
+
+  select{
+    height: 30px;
+    border: 0;
+    border-radius: 10px;
+    font-size: medium;
+    margin-top: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+    color:black
+  }
+
+  h1 {
+    color: rgb(19, 19, 19);
+    text-align: center;
+  }
+
+  h2 {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: xx-large;
+  }
+
+  
+  p {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: large;
+  }
+  
+  .submit {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(163,35,185,1) 0%, rgba(235,31,178,1) 0%, rgba(136,11,101,1) 100%);    color: white;
+    border: 0;
+    border-radius: 25px;
+    width: 200px;
+    height: 30px;
+    position: relative;
+    transition: transform 2s;
+  }
+
+  .check{
+    width: 15px;
+    height: 15px;
+    border: 0;
+    border-radius: 25px;
+    cursor: pointer;
+  }
+
+  .submit:hover{
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(163,35,185,1) 0%, rgba(235,31,178,1) 0%, rgba(240,240,240,1) 100%);
+    border: 1%;
+    border-color: white;
+    cursor: pointer;
+    color: black
+  }
+
+  button:not(.noselect, .edicaobotao){
+    font-weight: bold;
+    height: 30px;
+    width: 30px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: white;
+    border: 1%;
+    border-color: black;
+    border-radius: 50%;
+  }
+
+  button:not(.lista):hover{
+    font: bolder;
+    background-color: rgb(87, 87, 245);
+    border-color: white;
+    color: white;
+    cursor: pointer;
+  }
+
+  .comando{
+    margin-bottom: 10px;
+  }
+
+  .noselect {
+    width: 150px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background: red;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+    background: #e62222;
+    margin-top: 10px;
+    margin-bottom: 10px;
+   }
+   
+   .noselect, .noselect span {
+    transition: 200ms;
+   }
+   
+   .noselect .text {
+    transform: translateX(35px);
+    color: white;
+    font-weight: bold;
+   }
+   
+   .noselect .icon {
+    position: absolute;
+    border-left: 1px solid #c41b1b;
+    transform: translateX(110px);
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   }
+   
+   .noselect svg {
+    width: 15px;
+    fill: #eee;
+   }
+   
+   .noselect:hover {
+    background: #ff3636;
+   }
+   
+   .noselect:hover .text {
+    color: transparent;
+   }
+   
+   .noselect:hover .icon {
+    width: 150px;
+    border-left: none;
+    transform: translateX(0);
+   }
+   
+   .noselect:focus {
+    outline: none;
+   }
+   
+   .noselect:active .icon svg {
+    transform: scale(0.8);
+   }
+
+   
+
+   .box{
+    border: 0;
+    padding: 30px;
+   }
+
+   .cadastro, .listagem{
+    vertical-align: top;
+    margin-left: 20px;
+    margin-right: 20px;
+    display:inline-block;
+   }
+
+   .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    z-index: 9999;
+    border-radius: 0;
+  }
+
+  /* Estilos para o logo (imagem) */
+  .navbar-logo img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+  }
+
+  /* Estilos para o texto centralizado */
+  .navbar-title {
+    flex: 1; /* Faz o título ocupar todo o espaço restante */
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0; /* Removendo margens */
+  }
+
+  /* Estilos para o conteúdo da página abaixo da barra de navegação */
+  .content {
+    padding-top: 60px; /* Altura da barra de navegação + algum espaço extra */
+  }
+
+  .navbar-actions {
+    margin-left: 20px;
+  }
+  .navbar-actions a {
+    text-decoration: none;
+    color: white;
+    background-color: #333;
+    padding: 8px 12px;
+    border-radius: 5px;
+    margin-right: 25px;
+  }
+  .navbar-actions a:hover {
+    background-color: #444;
+  }
+
+  .maismenos{
+    color: black
+  }

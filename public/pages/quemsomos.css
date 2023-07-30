@@ -1,0 +1,97 @@
+/* Estilos gerais */
+body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: lightblue;
+  }
+  
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h1 {
+    color: white;
+    text-align: left;
+  }
+  
+  p {
+    color: white;
+    line-height: 1.6;
+  }
+  
+  /* Estilos para a barra de navegação */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    z-index: 9999;
+    border-radius: 0;
+  }
+
+  /* Estilos para o logo (imagem) */
+  .navbar-logo img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+  }
+
+  /* Estilos para o texto centralizado */
+  .navbar-title {
+    flex: 1; /* Faz o título ocupar todo o espaço restante */
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0; /* Removendo margens */
+  }
+  
+  /* Estilos para os links de navegação */
+  .navbar-actions {
+    margin-left: 20px;
+  }
+  .navbar-actions a {
+    text-decoration: none;
+    color: white;
+    background-color: #333;
+    padding: 8px 12px;
+    border-radius: 5px;
+    margin-right: 25px;
+  }
+  .navbar-actions a:hover {
+    background-color: #444;
+  }
+  
+  /* Ajuste para posicionar o texto ao lado do logo */
+  .navbar-logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .container{
+    border: 0;
+    border-radius: 25px;
+    padding: 30px;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(31,31,235,1) 0%, rgba(0,212,255,1) 100%);
+    height: max-content;
+    }
+
+    .content{
+        padding-top: 120px;
+    }
+
+  .logoProjeto{
+    border-radius: 10px;
+    float: right; /* Posiciona a imagem à direita */
+    margin-left: 20px; /* Adiciona um espaço entre a imagem e o texto */
+    width: 200px;
+  }
